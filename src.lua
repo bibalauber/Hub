@@ -39,15 +39,17 @@ end
 task.spawn(PlayTime)
 
 
-local UI = {}
+local UI = {
+	Active = true
+}
 UI.Tree = {}
 
 function UI:Init(options)
 	-- Bottom Bar + Icons + Hour
 	do
-		local blur = Instance.new("BlurEffect")
-		blur.Parent = game.Workspace
-		blur.Size = 13
+		UI.Tree["BLUR"] = Instance.new("BlurEffect")
+		UI.Tree["BLUR"].Parent = game.Lighting
+		UI.Tree["BLUR"].Size = 14
 		
 		-- StarterGui.Hub
 		UI.Tree["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
@@ -187,6 +189,25 @@ function UI:Init(options)
 		UI.Tree["11"]["BackgroundTransparency"] = 1;
 		UI.Tree["11"]["LayoutOrder"] = 1;
 		UI.Tree["11"]["Name"] = [[Home]];
+		
+		-- StarterGui.Hub.ShadowBottom
+		UI.Tree["49"] = Instance.new("Frame", UI.Tree["1"]);
+		UI.Tree["49"]["ZIndex"] = 9999998;
+		UI.Tree["49"]["BorderSizePixel"] = 0;
+		UI.Tree["49"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		UI.Tree["49"]["AnchorPoint"] = Vector2.new(1, 1);
+		UI.Tree["49"]["Size"] = UDim2.new(1, 0, 0, 100);
+		UI.Tree["49"]["Position"] = UDim2.new(1, 0, 1, 0);
+		UI.Tree["49"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+		UI.Tree["49"]["Name"] = [[ShadowBottom]];
+		UI.Tree["49"]["BackgroundTransparency"] = 0.3;
+
+		-- StarterGui.Hub.ShadowBottom.UIGradient
+		UI.Tree["4a"] = Instance.new("UIGradient", UI.Tree["49"]);
+		UI.Tree["4a"]["Rotation"] = 270;
+		UI.Tree["4a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.000, 1)};
+		UI.Tree["4a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(0, 0, 0))};
+
 	end
 	
 	-- LeftBar
@@ -561,6 +582,22 @@ function UI:Init(options)
 		task.spawn(SetHour);
 	end
 	
+	
+	do
+		uis.InputBegan:Connect(function(input, gp)
+			if gp then return end
+			
+			if input.UserInputType == Enum.UserInputType.Keyboard then
+				if input.KeyCode == Enum.KeyCode.P then
+					print("p")
+					UI.Active = not UI.Active
+					UI.Tree["1"]["Enabled"] = UI.Active
+					UI.Tree["BLUR"]["Enabled"] = UI.Active
+					
+				end
+			end
+		end)
+	end
 	
 	return UI
 end
