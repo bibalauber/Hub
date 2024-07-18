@@ -45,6 +45,10 @@ UI.Tree = {}
 function UI:Init(options)
 	-- Bottom Bar + Icons + Hour
 	do
+		local blur = Instance.new("BlurEffect")
+		blur.Parent = game.Workspace
+		blur.Size = 13
+		
 		-- StarterGui.Hub
 		UI.Tree["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 		UI.Tree["1"]["Name"] = [[Hub]];
