@@ -49,6 +49,7 @@ function UI:Init(options)
 		UI.Tree["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 		UI.Tree["1"]["Name"] = [[Hub]];
 		UI.Tree["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+		UI.Tree["1"]["Parent"] = game:GetService("CoreGui")
 
 		-- StarterGui.Hub.Bottom Bar
 		UI.Tree["2"] = Instance.new("Frame", UI.Tree["1"]);
