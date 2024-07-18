@@ -7,11 +7,8 @@ local Script = {
 	LocalPlayer = {
 		DisplayName = game:GetService("Players").LocalPlayer.DisplayName,
 		Name = "@" .. game:GetService("Players").LocalPlayer.Name,
-		ProfileIcon = game:GetService("Players"):GetUserThumbnailAsync(
-			game:GetService("Players").LocalPlayer.UserId, 
-			Enum.ThumbnailType.HeadShot,
-			Enum.ThumbnailSize.Size420x420
-		),
+		UserID = game:GetService("Players").LocalPlayer.UserId,
+		ProfileIcon = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game:GetService("Players").LocalPlayer.UserId .. "&width=200&height=200&format=png",
 		PlayTime = "0s"
 	}
 }
