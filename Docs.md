@@ -1,5 +1,5 @@
 use it like that:
-
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bibalauber/Hub/main/UILib.lua)"))()
 local win = Library:New("Title")
 
 local home = win:NewTab(18625889472) -- image id
